@@ -7,7 +7,7 @@
     <style>
       body {
         text-align: center;
-        background-color: rgb(2, 16, 69);
+        background-color: rgb(3, 19, 78);
       }
       button {
         color: white;
@@ -47,6 +47,7 @@
         score.displayScore = function () {
           return `won: ${score.win} lost: ${score.lost} tie: ${score.tie}`;
         };
+        showResult();
       }
 
       function generateComputerChoice() {
@@ -103,13 +104,16 @@
 
       function showResult(userMove, computerMove, result) {
         localStorage.setItem("score", JSON.stringify(score));
-        document.querySelector(
-          "#user-move"
-        ).innerText = `You Have Chosen ${userMove}`;
-        document.querySelector(
-          "#computer-move"
-        ).innerText = `computer chosen ${computerMove}`;
-        document.querySelector("#result").innerText = ` ${result}`;
+
+        document.querySelector("#user-move").innerText =
+          userMove !== undefined ? `You Have Chosen ${userMove}` : "";
+
+        document.querySelector("#computer-move").innerText =
+          computerMove !== undefined ? `computer chosen ${computerMove}` : "";
+
+        document.querySelector("#result").innerText =
+          result !== undefined ? ` ${result}` : "";
+
         document.querySelector(
           "#score"
         ).innerText = `Your final score is ${score.displayScore()}`;
